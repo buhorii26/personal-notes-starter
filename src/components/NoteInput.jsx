@@ -1,26 +1,34 @@
 import React from "react";
-
 class NoteInput extends React.Component {
-  state = {
-    title: "",
-    body: "",
-    limit: 50,
-  };
-  onTitleChangeEventHandler = (event) => {
+  constructor(props) {
+    super(props);
+
+    // inisialisasi state
+    this.state = {
+      title: "",
+      body: "",
+      limit: 50,
+    };
+    //binding
+    this.onTitleChangeEventHandler = this.onTitleChangeEventHandler.bind(this);
+    this.onBodyChangeEventHandler = this.onBodyChangeEventHandler.bind(this);
+    this.onSubmitEventHandler = this.onSubmitEventHandler.bind(this);
+  }
+  onTitleChangeEventHandler = (e) => {
     if (this.state.limit >= 0 && event.target.value.length <= 50) {
       this.setState(() => ({
-        title: event.target.value,
-        limit: 50 - event.target.vaue.length,
+        title: e.target.value,
+        limit: 50 - e.target.value.length,
       }));
     }
   };
-  onBodyChangeEventHandler = (event) => {
+  onBodyChangeEventHandler = (e) => {
     this.setState(() => ({
-      body: event.target.value,
+      body: e.target.value,
     }));
   };
-  onSubmitChangeEventHandler = (event) => {
-    event.preventDefault();
+  onSubmitEventHandler = (e) => {
+    e.preventDefault();
     this.props.addNote(this.state);
     this.setState(() => ({
       title: "",
@@ -37,7 +45,7 @@ class NoteInput extends React.Component {
         </p>
         <form
           className="note-input__body"
-          onSubmit={this.onSubmitChangeEventHandler}
+          onSubmit={this.onSubmitEventHandler}
         >
           <input
             type="text"

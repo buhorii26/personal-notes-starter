@@ -82,7 +82,7 @@ class NoteApp extends React.Component {
           <h2>Arsip</h2>
           <NoteList
             notes={archivedNotes}
-            onDelete={this.onDeleteHandler}
+            onDelete={this.onDeleteNoteHandler}
             onArchive={this.onArchiveHandler}
           />
         </div>
