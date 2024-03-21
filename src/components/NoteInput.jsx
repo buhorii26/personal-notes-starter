@@ -15,7 +15,7 @@ class NoteInput extends React.Component {
     this.onSubmitEventHandler = this.onSubmitEventHandler.bind(this);
   }
   onTitleChangeEventHandler = (e) => {
-    if (this.state.limit >= 0 && event.target.value.length <= 50) {
+    if (this.state.limit >= 0 && e.target.value.length <= 50) {
       this.setState(() => ({
         title: e.target.value,
         limit: 50 - e.target.value.length,
@@ -43,10 +43,7 @@ class NoteInput extends React.Component {
         <p className="note-input__title__char-limit">
           Sisa Karakter: {this.state.limit}
         </p>
-        <form
-          className="note-input__body"
-          onSubmit={this.onSubmitEventHandler}
-        >
+        <form className="note-input__body" onSubmit={this.onSubmitEventHandler}>
           <input
             type="text"
             placeholder="Ini adalah judul..."
